@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|c:\\users\\rromera\\documents\\github\\backend\\alimentacionesluna\\ent\\detallespedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|solutionrelative:ent\\detallespedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|c:\\users\\rromera\\documents\\github\\backend\\alimentacionesluna\\ent\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|solutionrelative:ent\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BA37BFD-E2D5-4D74-AFDF-C869A2B47132}|DAL\\DAL.csproj|c:\\users\\rromera\\documents\\github\\backend\\alimentacionesluna\\dal\\manejadora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BA37BFD-E2D5-4D74-AFDF-C869A2B47132}|DAL\\DAL.csproj|solutionrelative:dal\\manejadora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|c:\\users\\rromera\\documents\\github\\backend\\alimentacionesluna\\ent\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|solutionrelative:ent\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|c:\\users\\rromera\\documents\\github\\backend\\alimentacionesluna\\ent\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|solutionrelative:ent\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,71 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DetallesPedido.cs",
-              "DocumentMoniker": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\DetallesPedido.cs",
-              "RelativeDocumentMoniker": "ENT\\DetallesPedido.cs",
-              "ToolTip": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\DetallesPedido.cs",
-              "RelativeToolTip": "ENT\\DetallesPedido.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T13:10:17.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Pedido.cs",
-              "DocumentMoniker": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\Pedido.cs",
-              "RelativeDocumentMoniker": "ENT\\Pedido.cs",
-              "ToolTip": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\Pedido.cs",
-              "RelativeToolTip": "ENT\\Pedido.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T13:09:02.177Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Proveedor.cs",
-              "DocumentMoniker": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\Proveedor.cs",
-              "RelativeDocumentMoniker": "ENT\\Proveedor.cs",
-              "ToolTip": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\Proveedor.cs",
-              "RelativeToolTip": "ENT\\Proveedor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T13:03:59.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Manejadora.cs",
-              "DocumentMoniker": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\DAL\\Manejadora.cs",
-              "RelativeDocumentMoniker": "DAL\\Manejadora.cs",
-              "ToolTip": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\DAL\\Manejadora.cs",
-              "RelativeToolTip": "DAL\\Manejadora.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T13:02:50.251Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Producto.cs",
-              "DocumentMoniker": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\Producto.cs",
-              "RelativeDocumentMoniker": "ENT\\Producto.cs",
-              "ToolTip": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\ENT\\Producto.cs",
-              "RelativeToolTip": "ENT\\Producto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T13:02:36.299Z",
-              "EditorCaption": ""
             }
           ]
         }
