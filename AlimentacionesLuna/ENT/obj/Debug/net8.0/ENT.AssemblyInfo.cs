@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("AlimentacionesLuna")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("ENT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d46ec2e840828feb30e1801aa2c30974aaefdbda")]
-[assembly: System.Reflection.AssemblyProductAttribute("AlimentacionesLuna")]
-[assembly: System.Reflection.AssemblyTitleAttribute("AlimentacionesLuna")]
+[assembly: System.Reflection.AssemblyProductAttribute("ENT")]
+[assembly: System.Reflection.AssemblyTitleAttribute("ENT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
