@@ -1,7 +1,16 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\rromera\\Documents\\GitHub\\BackEnd\\AlimentacionesLuna\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1290DA2D-6519-421D-B279-9BEDCBCBD470}|AlimentacionesLuna\\AlimentacionesLuna.csproj|c:\\users\\alvaro.salvador\\desktop\\github\\sge\\backend\\alimentacionesluna\\alimentacionesluna\\controllers\\api\\proveedorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1290DA2D-6519-421D-B279-9BEDCBCBD470}|AlimentacionesLuna\\AlimentacionesLuna.csproj|solutionrelative:alimentacionesluna\\controllers\\api\\proveedorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|c:\\users\\alvaro.salvador\\desktop\\github\\sge\\backend\\alimentacionesluna\\ent\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{932043FD-DF00-48FD-A21B-9919B6659E22}|ENT\\ENT.csproj|solutionrelative:ent\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +18,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -22,6 +35,38 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProveedorController.cs",
+              "DocumentMoniker": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\AlimentacionesLuna\\Controllers\\API\\ProveedorController.cs",
+              "RelativeDocumentMoniker": "AlimentacionesLuna\\Controllers\\API\\ProveedorController.cs",
+              "ToolTip": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\AlimentacionesLuna\\Controllers\\API\\ProveedorController.cs*",
+              "RelativeToolTip": "AlimentacionesLuna\\Controllers\\API\\ProveedorController.cs*",
+              "ViewState": "AgIAACUAAAAAAAAAAAAgwDUAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-20T12:14:47.168Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Proveedor.cs",
+              "DocumentMoniker": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\ENT\\Proveedor.cs",
+              "RelativeDocumentMoniker": "ENT\\Proveedor.cs",
+              "ToolTip": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\ENT\\Proveedor.cs",
+              "RelativeToolTip": "ENT\\Proveedor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-20T12:16:07.268Z",
+              "EditorCaption": ""
             }
           ]
         }
