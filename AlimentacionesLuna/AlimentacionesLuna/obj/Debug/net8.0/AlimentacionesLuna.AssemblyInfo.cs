@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AlimentacionesLuna")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c1e7d8eec037119fdbfae82bc312c8ef51d492a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9094d2c6146737985eddb63d18f04447a746600d")]
 [assembly: System.Reflection.AssemblyProductAttribute("AlimentacionesLuna")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AlimentacionesLuna")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
