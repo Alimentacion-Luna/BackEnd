@@ -13,10 +13,9 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IdProducto = 0,
             IdProveedor = 0,
-            NombreProveedor = "",
             FechaPedido = new DateTime(),
             PrecioTotal = 0.0f,
-            Detalles = new List<DetallesPedido>()
+            Estado = ""
 
         };
         
@@ -68,7 +67,9 @@ namespace AlimentacionesLuna.Controllers.API
                     resultado = NoContent();
                 }
             }catch(Exception e){
+    
                 resultado = BadRequest("No se ha podido sacar el pedido por ID de producto");
+            
             }
 
 
@@ -79,12 +80,16 @@ namespace AlimentacionesLuna.Controllers.API
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
+
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
+
         }
 
         // DELETE api/<ValuesController>/5

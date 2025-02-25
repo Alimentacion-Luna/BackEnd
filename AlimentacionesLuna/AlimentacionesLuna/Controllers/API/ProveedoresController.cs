@@ -7,13 +7,13 @@ namespace AlimentacionesLuna.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProveedorController : ControllerBase
+    public class ProveedoresController : ControllerBase
     {
         public static Proveedor p = new Proveedor
         {
-            Id_Proveedor = 0,
+            IdProveedor = 0,
             Nombre = "",
-            Telefono = "",
+            Telefono = 0,
             Correo = ""
         };
 

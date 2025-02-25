@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj": {}
+    "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj": {
+    "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj",
+        "projectUniqueName": "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj",
         "projectName": "ENT",
-        "projectPath": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj",
+        "projectPath": "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\ENT\\ENT.csproj",
         "packagesPath": "C:\\Users\\alvaro.salvador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\ENT\\obj\\",
+        "outputPath": "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\ENT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

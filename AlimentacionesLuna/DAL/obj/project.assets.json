@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\DAL\\DAL.csproj",
+      "projectPath": "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\alvaro.salvador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alvaro.salvador\\Desktop\\GitHub\\SGE\\BackEnd\\AlimentacionesLuna\\DAL\\obj\\",
+      "outputPath": "C:\\Users\\alvaro.salvador\\Documents\\GitHub\\Servicios-Procesos\\BackEnd\\AlimentacionesLuna\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
