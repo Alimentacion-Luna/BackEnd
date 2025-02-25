@@ -2,8 +2,8 @@
 {
     public class DetallesPedido
     {
+        public int IdPedido { get; set; }
         public int IdProdcuto { get; set; }
-        public string NombreProducto { get; set; }
         public int Cantidad { get; set; }
         public float PrecioUnitario { get; set; }
         public float PrecioCantidad { get; set; }

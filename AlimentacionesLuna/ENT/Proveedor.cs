@@ -2,9 +2,9 @@
 {
     public class Proveedor
     {
-        public int Id_Proveedor { get; set; }
+        public int IdProveedor { get; set; }
         public string Nombre { get; set; }
-        public string Telefono { get; set; }
+        public long Telefono { get; set; }
         public string Correo { get; set; }
     }
 }
