@@ -53,40 +53,40 @@ namespace AlimentacionesLuna.Controllers.API
             return resultado;
         }
 
-        //// GET api/<ProveedorController>/5
-        //[HttpGet("{id}")]
-        //public IActionResult Get(int id)
-        //{
-        //    IActionResult resultado;
-        //    Proveedor personita = null;
-        //    try
-        //    {
-        //        if(p.Id_Proveedor == id)
-        //        {
-        //            personita = p;
-        //        }
-        //        if(personita != null)
-        //        {
-        //            resultado = Ok(personita);
-        //        }
-        //        else
-        //        {
-        //            resultado = NoContent();
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        resultado = BadRequest("Ha ocurrido un error al pedir el proveedor por ID");
-        //    }
+        // GET api/<ProveedorController>/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            IActionResult resultado;
+            Proveedor personita = null;
+            try
+            {
+                if (p.IdProveedor == id)
+                {
+                    personita = p;
+                }
+                if (personita != null)
+                {
+                    resultado = Ok(personita);
+                }
+                else
+                {
+                    resultado = NoContent();
+                }
+            }
+            catch (Exception e)
+            {
+                resultado = BadRequest("Ha ocurrido un error al pedir el proveedor por ID");
+            }
 
-        //    return resultado;
-        //}
+            return resultado;
+        }
 
-        
+
 
         // GET api/<ProveedorController>/5
         [HttpGet("{id}/productos")]
-        public IActionResult Get(int idProveedor)
+        public IActionResult GetProductos(int idProveedor)
         {
             IActionResult productos;
             List<Producto> listaProductoPorID = new List<Producto>();
