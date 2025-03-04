@@ -51,9 +51,10 @@ namespace DAL
             return pedidos;
         }
 
-        /*
-         * Incompleto, hablar sobre un posible procedimiento para el tipo de producto
-         */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<Producto> getProductos()
         {
             SqlConnection connection = new();
@@ -67,7 +68,7 @@ namespace DAL
             try
             {
                 connection.Open();
-                command.CommandText = "SELECT * FROM Pedidos";
+                command.CommandText = "SELECT * FROM Productos";
                 command.Connection = connection;
                 reader = command.ExecuteReader();
 
@@ -79,6 +80,8 @@ namespace DAL
                         producto.IdProducto = (int) reader["id_producto"];
                         producto.Nombre = (string)reader["nombre"];
                         producto.Impuesto = (int)reader["impuesto"];
+                        producto.Tipo = (int)reader["id_tipoProducto"];
+                        productos.Add(producto);
                     }
                 }
             }
@@ -88,6 +91,48 @@ namespace DAL
             }
 
             return productos;
+        }
+
+        public static List<DetallesPedido> GetDetallesPedidos()
+        {
+            SqlConnection connection = new();
+            List<DetallesPedido> pedidos = new();
+            SqlCommand command = new();
+            SqlDataReader reader;
+            DetallesPedido pedido;
+            connection.ConnectionString
+            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+
+            try
+            {
+                connection.Open();
+                command.CommandText = "SELECT * FROM Detalles_Pedido";
+                command.Connection = connection;
+                reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        pedido = new();
+                        pedido.IdPedido = (int)reader["id_pedido"];
+                        pedido.IdProdcuto = (int)reader["id_producto"];
+                        pedido.Cantidad = (int)reader["cantidad"];
+                        decimal pU = (decimal)reader["precio_unitario"];
+                        pedido.PrecioUnitario = (float)pU;
+                        decimal pC = (decimal)reader["precio_cantidad"];
+                        pedido.PrecioCantidad = (float)pC;
+                        pedido.Descuento = (int)reader["descuento_detallesPedido"];
+                        pedido.Impuesto = (int)reader["impuesto_detallesPedido"];
+                    }
+                }
+            }
+            catch (SqlException ex) 
+            {
+                throw ex;
+            }
+
+            return pedidos;
         }
     }
 }

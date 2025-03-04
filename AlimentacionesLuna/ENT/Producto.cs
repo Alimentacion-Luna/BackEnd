@@ -3,8 +3,9 @@
     public class Producto
     {
         public int IdProducto { get; set; }
-        public string Tipo { get; set; }
+        public Tipo tipo { get; set; }
         public int Impuesto { get; set; }
-        public string Nombre { get; set; }
+        public string NombreProd { get; set; }
+        public string NombreProv { get; set; }
     }
 }
