@@ -78,24 +78,55 @@ namespace AlimentacionesLuna.Controllers.API
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Pedido nuevoPedido)
         {
+            // tipo pedido  == 'nuevoPedido' si sale OK si no BadRequest
+            IActionResult resultado = BadRequest();
 
+            if (nuevoPedido != null)
+            {
+                if (pedidoEjemplo.IdProveedor != nuevoPedido.IdProveedor) // Como compruebo aquí esto?
+                { 
+                    resultado = Ok(nuevoPedido);
+                }
+            }
 
+            return resultado;
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Pedido pedidoEditar)
         {
+            IActionResult resultado = BadRequest();
 
+            if (pedidoEjemplo != null)
+            {
+                if(pedidoEjemplo.IdProveedor == pedidoEditar.IdProveedor)
+                {
+                    pedidoEjemplo = pedidoEditar;
+                    resultado = Ok(pedidoEjemplo);
 
+                }
+
+            }
+            return resultado;
         }
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int idProveedorPedidoABorrar)
         {
+            IActionResult resultado = BadRequest();
+
+            if(pedidoEjemplo != null)
+            {
+                if(pedidoEjemplo.IdProveedor == idProveedorPedidoABorrar)
+                {
+                    resultado = Ok();
+                }
+            }
+            return resultado;
         }
     }
 }
