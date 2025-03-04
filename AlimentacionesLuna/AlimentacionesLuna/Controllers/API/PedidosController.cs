@@ -1,7 +1,6 @@
-﻿using ENT;
+﻿using DAL;
+using ENT;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AlimentacionesLuna.Controllers.API
 {
@@ -11,7 +10,7 @@ namespace AlimentacionesLuna.Controllers.API
     {
         public static Pedido pedidoEjemplo = new Pedido
         {
-            IdProducto = 0,
+            IdPedido = 1,
             IdProveedor = 0,
             FechaPedido = new DateTime(),
             PrecioTotal = 0.0f,
@@ -26,8 +25,7 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado;
 
-            List<Pedido> listaPedidos = new List<Pedido>();
-            listaPedidos.Add(pedidoEjemplo);
+            List<Pedido> listaPedidos = Manejadora.getPedidos();
 
             try
             {
@@ -55,7 +53,7 @@ namespace AlimentacionesLuna.Controllers.API
             Pedido ejemplo = null;
             try
             {
-                if(pedidoEjemplo.IdProducto == id)
+                if(pedidoEjemplo.IdPedido == id)
                 {
                     ejemplo = pedidoEjemplo;
                 }
