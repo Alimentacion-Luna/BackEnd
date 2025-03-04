@@ -78,9 +78,7 @@ namespace DAL
                     {
                         producto = new Producto();
                         producto.IdProducto = (int) reader["id_producto"];
-                        producto.Nombre = (string)reader["nombre"];
                         producto.Impuesto = (int)reader["impuesto"];
-                        producto.Tipo = (int)reader["id_tipoProducto"];
                         productos.Add(producto);
                     }
                 }

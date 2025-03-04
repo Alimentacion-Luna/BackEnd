@@ -1,6 +1,4 @@
-﻿using DTO;
-
-namespace DAL
+﻿namespace DAL
 {
     public class ManejadoraModelos
     {

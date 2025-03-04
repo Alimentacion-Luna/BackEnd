@@ -113,18 +113,9 @@ namespace AlimentacionesLuna.Controllers.API
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int idProveedorPedidoABorrar)
+        public void Delete(int idProveedorPedidoABorrar)
         {
-            IActionResult resultado = BadRequest();
-
-            if(pedidoEjemplo != null)
-            {
-                if(pedidoEjemplo.IdProveedor == idProveedorPedidoABorrar)
-                {
-                    resultado = Ok();
-                }
-            }
-            return resultado;
+        
         }
     }
 }

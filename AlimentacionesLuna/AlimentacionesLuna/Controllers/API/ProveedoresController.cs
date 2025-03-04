@@ -20,9 +20,7 @@ namespace AlimentacionesLuna.Controllers.API
         public static Producto productoEjemplo = new Producto
         {
             IdProducto = 0,
-            Tipo = "algo",
             Impuesto = 0,
-            Nombre = "algo"
         };
 
 
