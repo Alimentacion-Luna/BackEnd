@@ -9,7 +9,5 @@
         public float PrecioCantidad { get; set; }
         public int Descuento { get; set; }
         public int Impuesto { get; set; }
-        public string NombreProv { get; set; }
-        public string NombreProd { get; set; }
     }
 }

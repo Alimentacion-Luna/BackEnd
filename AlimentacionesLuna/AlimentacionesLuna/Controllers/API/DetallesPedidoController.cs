@@ -12,8 +12,6 @@ namespace AlimentacionesLuna.Controllers.API
         public static DetallesPedido pedidoEjemplo = new DetallesPedido
         {
             IdPedido = 1,
-            NombreProd = "",
-            NombreProv = "",
             PrecioCantidad = 0.0f,
             PrecioUnitario = 0.0f,
             Descuento = 0,

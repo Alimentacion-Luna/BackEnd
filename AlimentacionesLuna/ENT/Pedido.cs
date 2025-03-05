@@ -7,7 +7,5 @@
         public DateTime FechaPedido { get; set; }
         public float PrecioTotal { get; set; }
         public string Estado { get; set; }
-        public string NombreProv { get; set; }
-        public string NombreProd { get; set; }
     }
 }

@@ -6,6 +6,5 @@
         public Tipo tipo { get; set; }
         public int Impuesto { get; set; }
         public string NombreProd { get; set; }
-        public string NombreProv { get; set; }
     }
 }
