@@ -78,7 +78,6 @@ namespace AlimentacionesLuna.Controllers.API
         [HttpPost]
         public IActionResult Post([FromBody] Pedido nuevoPedido)
         {
-            // tipo pedido  == 'nuevoPedido' si sale OK si no BadRequest
             IActionResult resultado = BadRequest();
 
             if (nuevoPedido != null)

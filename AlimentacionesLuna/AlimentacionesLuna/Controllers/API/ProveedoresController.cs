@@ -1,4 +1,5 @@
-﻿using ENT;
+﻿using DAL;
+using ENT;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -30,8 +31,7 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado;
 
-            List<Proveedor> listaProveedores = new List<Proveedor>();
-            listaProveedores.Add(p);
+            List<Proveedor> listaProveedores = Manejadora.getProveedores();
 
             try
             {
@@ -58,13 +58,10 @@ namespace AlimentacionesLuna.Controllers.API
         public IActionResult Get(int id)
         {
             IActionResult resultado;
-            Proveedor personita = null;
+            Proveedor personita = Manejadora.getProveedorID(id);
             try
             {
-                if (p.IdProveedor == id)
-                {
-                    personita = p;
-                }
+
                 if (personita != null)
                 {
                     resultado = Ok(personita);
