@@ -82,12 +82,11 @@ namespace AlimentacionesLuna.Controllers.API
 
 
         // GET api/<ProveedorController>/5
-        [HttpGet("{id}/productos")]
+        [HttpGet("{idProveedor}/productos")]
         public IActionResult GetProductos(int idProveedor)
         {
             IActionResult productos;
-            List<Producto> listaProductoPorID = new List<Producto>();
-            listaProductoPorID.Add(productoEjemplo);
+            List<Producto> listaProductoPorID = Manejadora.getListaProductosPorIDProveedor(idProveedor);
 
             try
             {

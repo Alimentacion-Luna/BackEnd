@@ -71,7 +71,7 @@ namespace DAL
             try
             {
                 connection.Open();
-                command.CommandText = "SELECT * FROM Productos";
+                command.CommandText = "EXECUTE ProductoConTipo";
                 command.Connection = connection;
                 reader = command.ExecuteReader();
 
@@ -82,6 +82,11 @@ namespace DAL
                         producto = new Producto();
                         producto.IdProducto = (int)reader["id_producto"];
                         producto.Impuesto = (int)reader["impuesto"];
+                        Tipo t = new Tipo();
+                        t.Id = (int)reader["id_tipoProducto"];
+                        t.Nombre = (string)reader["nombre_tipoProducto"];
+                        producto.tipo = t;
+                        producto.NombreProd = (string)reader["nombre_producto"];
                         productos.Add(producto);
                     }
                 }
@@ -107,7 +112,7 @@ namespace DAL
             try
             {
                 connection.Open();
-                command.CommandText = "EXEC "; // TIENES QUE PONER EL EXEC POR ID DE PROVEEDOR
+                command.CommandText = "EXEC ProductosPorIDProveedor @id_prov = @id"; // TIENES QUE PONER EL EXEC POR ID DE PROVEEDOR
                 command.Connection = connection;
                 reader = command.ExecuteReader();
 
@@ -115,11 +120,14 @@ namespace DAL
                 {
                     while (reader.Read())
                     {
-                        producto = new();
+                        producto = new Producto();
                         producto.IdProducto = (int)reader["id_producto"];
-                        producto.tipo = (Tipo)reader["id_tipoProducto"];
                         producto.Impuesto = (int)reader["impuesto"];
-                        //producto. = (string)reader["nombre"];
+                        Tipo t = new Tipo();
+                        t.Id = (int)reader["id_tipoProducto"];
+                        t.Nombre = (string)reader["nombre_tipoProducto"];
+                        producto.tipo = t;
+                        producto.NombreProd = (string)reader["nombre_producto"];
                         productosProveedor.Add(producto);
                     }
                 }
@@ -206,9 +214,9 @@ namespace DAL
                         proveedor = new Proveedor();
                         proveedor.IdProveedor = (int)reader["id_proveedor"];
                         proveedor.Nombre = (string)reader["nombre"];
-                        proveedor.Telefono = (Int64)reader["telefono"];
+                        proveedor.Telefono = (long)reader["telefono"];
                         proveedor.Correo = (string)reader["correo"];
-                        proveedores.Add(proveedor); // Añade las cosas a la lista sino no ve na GENIO
+                        proveedores.Add(proveedor);
                     }
                 }
             }
