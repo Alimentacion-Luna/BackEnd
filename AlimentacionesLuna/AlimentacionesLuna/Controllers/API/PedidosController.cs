@@ -14,7 +14,7 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado;
 
-            List<Pedido> listaPedidos = null;
+            List<PedidoDTO> listaPedidos = Manejadora.getPedidos();
 
             try
             {
@@ -39,7 +39,7 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado;
 
-            Pedido pedido = null /* Manejadora.GetPedidoPorId(id)*/;
+            PedidoDTO pedido = Manejadora.getPedidoPorID(id);
 
             try
             {
@@ -62,16 +62,17 @@ namespace AlimentacionesLuna.Controllers.API
 
         // POST api/<ValuesController>
         [HttpPost]
-        public IActionResult Post([FromBody] Pedido nuevoPedido)
+        public IActionResult Post([FromBody] PedidoDTO nuevoPedido)
         {
-            IActionResult resultado = BadRequest();
-
+            IActionResult resultado;
+            bool ins = false;
             try
             {
                 if(nuevoPedido != null)
                 {
-                    /* Manejadora.InsPedido()*/
-                    resultado = Ok(nuevoPedido);
+                    ins = Manejadora.InsPedido(nuevoPedido);
+                    ins = true;
+                    resultado = Ok(ins);
                 }
                 else
                 {
@@ -88,11 +89,11 @@ namespace AlimentacionesLuna.Controllers.API
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Pedido pedidoEditar)
+        public IActionResult Put(int id, [FromBody] PedidoDTO pedidoEditar)
         {
             IActionResult resultado = BadRequest();
 
-            Pedido pedido = null /* Manejadora.getPedidoPorId(id)*/;
+            PedidoDTO pedido = Manejadora.getPedidoPorID(id);
 
             try
             {

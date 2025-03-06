@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DTO;
 using ENT;
 using Microsoft.AspNetCore.Mvc;
 
@@ -71,7 +72,7 @@ namespace AlimentacionesLuna.Controllers.API
         public IActionResult GetProductos(int idProveedor)
         {
             IActionResult productos;
-            List<Producto> listaProductoPorID = Manejadora.getListaProductosPorIDProveedor(idProveedor);
+            List<ProductoDTO> listaProductoPorID = Manejadora.getListaProductosPorIDProveedor(idProveedor);
 
             try
             {

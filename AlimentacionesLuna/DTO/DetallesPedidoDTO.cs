@@ -3,6 +3,8 @@ namespace DTO
 {
     public class DetallesPedidoDTO
     {
+        public int id_pedido { get; set; }
+        public int id_producto { get; set; }
         public string nombreProducto { get; set; }
         public int cantidad { get; set; }
         public float precioUnitario { get; set; }

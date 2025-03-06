@@ -9,31 +9,12 @@ namespace AlimentacionesLuna.Controllers.API
     [ApiController]
     public class DetallesPedidoController : ControllerBase
     {
-        public static DetallesPedido pedidoEjemplo = new DetallesPedido
-        {
-            IdPedido = 1,
-            PrecioCantidad = 0.0f,
-            PrecioUnitario = 0.0f,
-            Descuento = 0,
-            Impuesto = 0,
-
-
-
-        };
 
         // GET api/<DetallesPedidoController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             IActionResult resultado = BadRequest();
-
-            if (pedidoEjemplo != null)
-            {
-                if(pedidoEjemplo.IdPedido == id)
-                {
-                    resultado = Ok(pedidoEjemplo);
-                }
-            }
 
             return resultado;
         }

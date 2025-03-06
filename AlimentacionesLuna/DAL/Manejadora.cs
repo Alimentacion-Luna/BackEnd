@@ -1,6 +1,8 @@
 ﻿using DTO;
 using ENT;
 using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Data.SqlTypes;
 
 namespace DAL
 {
@@ -25,7 +27,7 @@ namespace DAL
             try
             {
                 connection.Open();
-                command.CommandText = "SELECT * FROM Pedidos";
+                command.CommandText = "EXEC PedidosConNombreProv";
                 command.Connection = connection;
                 reader = command.ExecuteReader();
 
@@ -35,11 +37,16 @@ namespace DAL
                     {
                         pedido = new();
                         pedido.IdPedido = (int)reader["id_pedido"];
+                        Proveedor p = new Proveedor();
+                        p.IdProveedor = (int)reader["id_proveedor"];
+                        p.Nombre = (string)reader["nombre_proveedor"];
+                        pedido.proveedor = p;
                         pedido.fechaPedido = (DateTime)reader["fecha_pedido"];
-                        pedido.detalles = getDetallesPedidos(pedido.IdPedido);
                         decimal pT = (decimal)reader["precio_total"];
                         pedido.precioTotal = (float)pT;
                         pedido.estado = (string)reader["estado"];
+                        pedido.detalles = getDetallesPedidos(pedido.IdPedido);
+                        pedidos.Add(pedido);
                     }
                 }
             }
@@ -59,7 +66,7 @@ namespace DAL
             PedidoDTO pedido = null;
             connection.ConnectionString
             = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
-            command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = idPedido;
+            command.Parameters.Add("@id", SqlDbType.Int).Value = idPedido;
 
             try
             {
@@ -72,17 +79,16 @@ namespace DAL
                 {
                     reader.Read();
                     pedido = new();
-                    int IdProveedor = (int)reader["id_proveedor"];
-                    string NombreProveedor = (string)reader["nombre_proveedor"];
-                    Proveedor p = new();
-                    p.IdProveedor = IdProveedor;
-                    p.Nombre = NombreProveedor;
-                    pedido.fechaPedido = (DateTime)reader["fecha_pedido"];
+                    Proveedor p = new Proveedor();
+                    pedido.IdPedido = (int)reader["id_pedido"];
+                    p.IdProveedor = (int)reader["id_proveedor"];
+                    p.Nombre = (string)reader["nombre_proveedor"];
                     pedido.proveedor = p;
+                    pedido.fechaPedido = (DateTime)reader["fecha_pedido"];
                     decimal pT = (decimal)reader["precio_total"];
                     pedido.precioTotal = (float)pT;
                     pedido.estado = (string)reader["estado"];
-
+                    pedido.detalles = getDetallesPedidos(pedido.IdPedido);
                 }
             }
             catch (SqlException ex)
@@ -146,13 +152,13 @@ namespace DAL
         public static List<ProductoDTO> getListaProductosPorIDProveedor(int idProveedor)
         {
             SqlConnection connection = new SqlConnection();
-            List<Producto> productosProveedor = new List<Producto>();
+            List<ProductoDTO> productosProveedor = new List<ProductoDTO>();
             SqlCommand command = new SqlCommand();
             SqlDataReader reader;
-            Producto producto;
+            ProductoDTO producto;
             connection.ConnectionString
             = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
-            command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = idProveedor;
+            command.Parameters.Add("@id", SqlDbType.Int).Value = idProveedor;
             try
             {
                 connection.Open();
@@ -164,7 +170,7 @@ namespace DAL
                 {
                     while (reader.Read())
                     {
-                        producto = new Producto();
+                        producto = new();
                         producto.IdProducto = (int)reader["id_producto"];
                         producto.Impuesto = (int)reader["impuesto"];
                         Tipo t = new Tipo();
@@ -197,7 +203,7 @@ namespace DAL
             DetallesPedidoDTO pedido;
             connection.ConnectionString
             = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
-            command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = idPedido;
+            command.Parameters.Add("@id", SqlDbType.Int).Value = idPedido;
 
             try
             {
@@ -211,12 +217,16 @@ namespace DAL
                     while (reader.Read())
                     {
                         pedido = new();
+                        pedido.id_pedido = (int)reader["id_pedido"];
+                        pedido.id_producto = (int)reader["id_producto"];
                         pedido.nombreProducto = (string)reader["nombre_producto"];
                         pedido.cantidad = (int)reader["cantidad"];
                         decimal pC = (decimal)reader["precio_cantidad"];
                         pedido.precioCantidad = (float)pC;
                         decimal pU = (decimal)reader["precio_unitario"];
                         pedido.precioUnitario = (float)pU;
+                        pedido.cantidad = (int)reader["cantidad_detallesPedido"];
+                        pedido.descuento = (int)reader["descuento_detallesPedido"];
                         pedidos.Add(pedido);
                     }
                 }
@@ -299,7 +309,7 @@ namespace DAL
                     proveedor.Nombre = (string)reader["nombre"];
                     proveedor.Telefono = (long)reader["telefono"];
                     proveedor.Correo = (string)reader["correo"];
-
+                    
 
                 }
 
@@ -321,29 +331,73 @@ namespace DAL
             connection.ConnectionString
             = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
 
-            connection.Open();
-            command.CommandText = "SELECT * FROM Tipos";
-            command.Connection = connection;
-            reader = command.ExecuteReader();
-            if (reader.HasRows)
+            try
             {
-
-                while (reader.Read())
+                connection.Open();
+                command.CommandText = "SELECT * FROM Tipo_Producto";
+                command.Connection = connection;
+                reader = command.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    Tipo tipo = new Tipo();
-                    reader.Read();
-                    tipo.Id = (int)reader["id_tipoProducto"];
-                    tipo.Nombre = (string)reader["nombre_tipoProducto"];
-                    tipos.Add(tipo);
+
+                    while (reader.Read())
+                    {
+                        Tipo tipo = new Tipo();
+                        tipo.Id = (int)reader["id_tipoProducto"];
+                        tipo.Nombre = (string)reader["nombre_tipoProducto"];
+                        tipos.Add(tipo);
+                    }
+
+
                 }
-
-
             }
+            catch (SqlException ex) 
+            {
+                throw ex;
+            }
+            
 
             return tipos;
         }
 
+        public static bool InsPedido(PedidoDTO pedido)
+        {
+            bool ins = false;
+            SqlConnection connection = new SqlConnection();
+            List<Tipo> tipos = new List<Tipo>();
+            SqlCommand command = new SqlCommand();
+            connection.ConnectionString
+            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            command.Parameters.Add("@id_proveedor", SqlDbType.Int).Value = pedido.proveedor.IdProveedor;
+            try
+            {
+                connection.Open();
+                SqlBulkCopy bulk = new(connection);
+                command.CommandText = "INSERT INTO Pedidos (id_proveedor) VALUES (@id_proveedor)";
+                int modified = (int)command.ExecuteScalar();
+                bulk.DestinationTableName = "Detalles_Pedido";
+                DataTable dt = new DataTable();
+                dt.Columns.Add("id_pedido", typeof(int));
+                dt.Columns.Add("id_producto", typeof(int));
+                dt.Columns.Add("cantidad", typeof(int));
+                dt.Columns.Add("precio_unitario", typeof(SqlMoney));
+                dt.Columns.Add("precio_total", typeof(SqlMoney));
+                dt.Columns.Add("descuento_detalles", typeof(int));
+                dt.Columns.Add("impuesto_detalles", typeof(int));
 
+                foreach(DetallesPedidoDTO d in pedido.detalles) 
+                {
+                    dt.Rows.Add(modified, d.id_producto, d.cantidad, d.precioUnitario, d.precioCantidad, d.descuento, d.impuesto);
+                }
+
+                bulk.WriteToServer(dt);
+
+                ins = true;
+
+            }catch (SqlException ex) { ins = false; throw ex; };
+
+            return ins;
+        }
 
     }
 }
