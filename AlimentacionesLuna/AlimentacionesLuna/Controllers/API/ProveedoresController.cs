@@ -10,21 +10,6 @@ namespace AlimentacionesLuna.Controllers.API
     [ApiController]
     public class ProveedoresController : ControllerBase
     {
-        public static Proveedor p = new Proveedor
-        {
-            IdProveedor = 0,
-            Nombre = "",
-            Telefono = 0,
-            Correo = ""
-        };
-
-        public static Producto productoEjemplo = new Producto
-        {
-            IdProducto = 0,
-            Impuesto = 0,
-        };
-
-
         // GET: api/<ProveedorController>
         [HttpGet]
         public IActionResult Get()

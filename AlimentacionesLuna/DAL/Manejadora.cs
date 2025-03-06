@@ -143,7 +143,7 @@ namespace DAL
         /// </summary>
         /// <param name="idProveedor"></param>
         /// <returns></returns>
-        public static List<Producto> getListaProductosPorIDProveedor(int idProveedor)
+        public static List<ProductoDTO> getListaProductosPorIDProveedor(int idProveedor)
         {
             SqlConnection connection = new SqlConnection();
             List<Producto> productosProveedor = new List<Producto>();
