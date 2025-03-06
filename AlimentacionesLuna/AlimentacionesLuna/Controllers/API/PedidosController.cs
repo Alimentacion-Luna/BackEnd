@@ -1,5 +1,5 @@
 ﻿using DAL;
-using ENT;
+using DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlimentacionesLuna.Controllers.API
@@ -8,24 +8,13 @@ namespace AlimentacionesLuna.Controllers.API
     [ApiController]
     public class PedidosController : ControllerBase
     {
-        public static Pedido pedidoEjemplo = new Pedido
-        {
-            IdPedido = 1,
-            IdProveedor = 0,
-            FechaPedido = new DateTime(),
-            PrecioTotal = 0.0f,
-            Estado = ""
-
-        };
-        
-
         // GET: api/<ValuesController>
         [HttpGet]
         public IActionResult Get()
         {
             IActionResult resultado;
 
-            List<Pedido> listaPedidos = Manejadora.getPedidos();
+            List<Pedido> listaPedidos = null;
 
             try
             {
@@ -50,26 +39,23 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado;
 
-            Pedido ejemplo = null;
+            Pedido pedido = null /* Manejadora.GetPedidoPorId(id)*/;
+
             try
             {
-                if(pedidoEjemplo.IdPedido == id)
+                if (pedido != null) 
                 {
-                    ejemplo = pedidoEjemplo;
+                    resultado = Ok(pedido);
                 }
-                if(ejemplo != null)
+                else
                 {
-                    resultado = Ok();
-                }
-                else{
                     resultado = NoContent();
                 }
-            }catch(Exception e){
-    
-                resultado = BadRequest("No se ha podido sacar el pedido por ID de producto");
-            
             }
-
+            catch (Exception e) 
+            {
+                resultado = BadRequest("Problema al intentar recoger el pedido");
+            }
 
             return resultado;
         }
@@ -80,12 +66,21 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado = BadRequest();
 
-            if (nuevoPedido != null)
+            try
             {
-                if (pedidoEjemplo.IdProveedor != nuevoPedido.IdProveedor) // Como compruebo aquí esto?
-                { 
+                if(nuevoPedido != null)
+                {
+                    /* Manejadora.InsPedido()*/
                     resultado = Ok(nuevoPedido);
                 }
+                else
+                {
+                    resultado = NoContent();
+                }
+            }
+            catch (Exception e) 
+            {
+                resultado = BadRequest("Error al intentar insertar el pedido");
             }
 
             return resultado;
@@ -97,24 +92,26 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado = BadRequest();
 
-            if (pedidoEjemplo != null)
+            Pedido pedido = null /* Manejadora.getPedidoPorId(id)*/;
+
+            try
             {
-                if(pedidoEjemplo.IdProveedor == pedidoEditar.IdProveedor)
+                if (pedido != null && pedido == pedidoEditar) 
                 {
-                    pedidoEjemplo = pedidoEditar;
-                    resultado = Ok(pedidoEjemplo);
-
+                    pedido = null /* Manejadora.UpdPedido(pedido)*/;
+                    resultado = Ok(pedido);
                 }
-
+                else
+                {
+                    resultado = NoContent();
+                }
             }
-            return resultado;
-        }
+            catch (Exception e)
+            {
+                resultado = BadRequest("Error al intentar editar el pedido");
+            }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int idProveedorPedidoABorrar)
-        {
-        
+            return resultado;
         }
     }
 }
