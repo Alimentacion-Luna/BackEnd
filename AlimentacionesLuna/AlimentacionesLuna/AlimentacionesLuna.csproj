@@ -7,6 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\producto\1.webp" />
+    <None Include="wwwroot\images\producto\10.webp" />
+    <None Include="wwwroot\images\producto\11.webp" />
+    <None Include="wwwroot\images\producto\12.webp" />
+    <None Include="wwwroot\images\producto\13.webp" />
+    <None Include="wwwroot\images\producto\14.webp" />
+    <None Include="wwwroot\images\producto\15.webp" />
+    <None Include="wwwroot\images\producto\16.webp" />
+    <None Include="wwwroot\images\producto\17.webp" />
+    <None Include="wwwroot\images\producto\18.webp" />
+    <None Include="wwwroot\images\producto\19.webp" />
+    <None Include="wwwroot\images\producto\2.webp" />
+    <None Include="wwwroot\images\producto\20.webp" />
+    <None Include="wwwroot\images\producto\3.webp" />
+    <None Include="wwwroot\images\producto\4.webp" />
+    <None Include="wwwroot\images\producto\5.webp" />
+    <None Include="wwwroot\images\producto\6.webp" />
+    <None Include="wwwroot\images\producto\7.webp" />
+    <None Include="wwwroot\images\producto\8.webp" />
+    <None Include="wwwroot\images\producto\9.webp" />
+    <None Include="wwwroot\images\proveedor\1.webp" />
+    <None Include="wwwroot\images\proveedor\2.webp" />
+    <None Include="wwwroot\images\proveedor\3.webp" />
+    <None Include="wwwroot\images\proveedor\4.webp" />
+    <None Include="wwwroot\images\proveedor\5.webp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
     <ProjectReference Include="..\ENT\ENT.csproj" />
   </ItemGroup>

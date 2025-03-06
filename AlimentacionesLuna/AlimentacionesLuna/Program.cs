@@ -25,8 +25,8 @@ app.MapControllerRoute(
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
-    RequestPath = new PathString("/Images")
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/")),
+    RequestPath = new PathString("/images")
 });
 
 app.Run();

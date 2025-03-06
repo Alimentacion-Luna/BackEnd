@@ -1,6 +1,6 @@
-﻿using ENT;
+﻿using DTO;
+using ENT;
 using Microsoft.Data.SqlClient;
-using System.Numerics;
 
 namespace DAL
 {
@@ -12,13 +12,13 @@ namespace DAL
         /// Post: Devuelve TODOS los registros de la tabla
         /// </summary>
         /// <returns>Listado de pedidos</returns>
-        public static List<Pedido> getPedidos()
+        public static List<PedidoDTO> getPedidos()
         {
             SqlConnection connection = new SqlConnection();
-            List<Pedido> pedidos = new List<Pedido>();
+            List<PedidoDTO> pedidos = new();
             SqlCommand command = new SqlCommand();
             SqlDataReader reader;
-            Pedido pedido;
+            PedidoDTO pedido;
             connection.ConnectionString
             = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
 
@@ -33,14 +33,13 @@ namespace DAL
                 {
                     while (reader.Read())
                     {
-                        pedido = new Pedido();
+                        pedido = new();
                         pedido.IdPedido = (int)reader["id_pedido"];
-                        pedido.IdProveedor = (int)reader["id_proveedor"];
-                        pedido.FechaPedido = (DateTime)reader["fecha_pedido"];
-                        decimal pt = (decimal)reader["precio_total"];
-                        pedido.PrecioTotal = (float)pt;
-                        pedido.Estado = (string)reader["estado"];
-                        pedidos.Add(pedido);
+                        pedido.fechaPedido = (DateTime)reader["fecha_pedido"];
+                        pedido.detalles = getDetallesPedidos(pedido.IdPedido);
+                        decimal pT = (decimal)reader["precio_total"];
+                        pedido.precioTotal = (float)pT;
+                        pedido.estado = (string)reader["estado"];
                     }
                 }
             }
@@ -52,6 +51,47 @@ namespace DAL
             return pedidos;
         }
 
+        public static PedidoDTO getPedidoPorID(int idPedido)
+        {
+            SqlConnection connection = new SqlConnection();
+            SqlCommand command = new SqlCommand();
+            SqlDataReader reader;
+            PedidoDTO pedido = null;
+            connection.ConnectionString
+            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = idPedido;
+
+            try
+            {
+                connection.Open();
+                command.CommandText = "EXEC PedidosConNombreProv_IdPedido @id";
+                command.Connection = connection;
+                reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    pedido = new();
+                    int IdProveedor = (int)reader["id_proveedor"];
+                    string NombreProveedor = (string)reader["nombre_proveedor"];
+                    Proveedor p = new();
+                    p.IdProveedor = IdProveedor;
+                    p.Nombre = NombreProveedor;
+                    pedido.fechaPedido = (DateTime)reader["fecha_pedido"];
+                    pedido.proveedor = p;
+                    decimal pT = (decimal)reader["precio_total"];
+                    pedido.precioTotal = (float)pT;
+                    pedido.estado = (string)reader["estado"];
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return pedido;
+
+        }
         /// <summary>
         /// Función que devuelve una lista de productos de la base de datos
         /// Pre: La base de datos tiene que estar encendida
@@ -98,7 +138,11 @@ namespace DAL
 
             return productos;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idProveedor"></param>
+        /// <returns></returns>
         public static List<Producto> getListaProductosPorIDProveedor(int idProveedor)
         {
             SqlConnection connection = new SqlConnection();
@@ -144,20 +188,21 @@ namespace DAL
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<DetallesPedido> GetDetallesPedidos()
+        public static List<DetallesPedidoDTO> getDetallesPedidos(int idPedido)
         {
             SqlConnection connection = new SqlConnection();
-            List<DetallesPedido> pedidos = new List<DetallesPedido>();
+            List<DetallesPedidoDTO> pedidos = new List<DetallesPedidoDTO>();
             SqlCommand command = new SqlCommand();
             SqlDataReader reader;
-            DetallesPedido pedido;
+            DetallesPedidoDTO pedido;
             connection.ConnectionString
             = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = idPedido;
 
             try
             {
                 connection.Open();
-                command.CommandText = "SELECT * FROM Detalles_Pedido";
+                command.CommandText = "EXEC DetallesCompletos_IdPedido @id";
                 command.Connection = connection;
                 reader = command.ExecuteReader();
 
@@ -166,15 +211,13 @@ namespace DAL
                     while (reader.Read())
                     {
                         pedido = new();
-                        pedido.IdPedido = (int)reader["id_pedido"];
-                        pedido.IdProdcuto = (int)reader["id_producto"];
-                        pedido.Cantidad = (int)reader["cantidad"];
-                        decimal pU = (decimal)reader["precio_unitario"];
-                        pedido.PrecioUnitario = (float)pU;
+                        pedido.nombreProducto = (string)reader["nombre_producto"];
+                        pedido.cantidad = (int)reader["cantidad"];
                         decimal pC = (decimal)reader["precio_cantidad"];
-                        pedido.PrecioCantidad = (float)pC;
-                        pedido.Descuento = (int)reader["descuento_detallesPedido"];
-                        pedido.Impuesto = (int)reader["impuesto_detallesPedido"];
+                        pedido.precioCantidad = (float)pC;
+                        decimal pU = (decimal)reader["precio_unitario"];
+                        pedido.precioUnitario = (float)pU;
+                        pedidos.Add(pedido);
                     }
                 }
             }
@@ -228,7 +271,11 @@ namespace DAL
             return proveedores;
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idProveedor"></param>
+        /// <returns></returns>
         public static Proveedor getProveedorID(int idProveedor)
         {
             SqlConnection connection = new SqlConnection();
@@ -265,5 +312,38 @@ namespace DAL
             return proveedor;
         }
         #endregion
+        public static List<Tipo> getTipos()
+        {
+            SqlConnection connection = new SqlConnection();
+            List<Tipo> tipos = new List<Tipo>();
+            SqlCommand command = new SqlCommand();
+            SqlDataReader reader;
+            connection.ConnectionString
+            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+
+            connection.Open();
+            command.CommandText = "SELECT * FROM Tipos";
+            command.Connection = connection;
+            reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+
+                while (reader.Read())
+                {
+                    Tipo tipo = new Tipo();
+                    reader.Read();
+                    tipo.Id = (int)reader["id_tipoProducto"];
+                    tipo.Nombre = (string)reader["nombre_tipoProducto"];
+                    tipos.Add(tipo);
+                }
+
+
+            }
+
+            return tipos;
+        }
+
+
+
     }
 }
