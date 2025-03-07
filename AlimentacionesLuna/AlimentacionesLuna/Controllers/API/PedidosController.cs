@@ -89,7 +89,7 @@ namespace AlimentacionesLuna.Controllers.API
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string estado)
+        public IActionResult Put(int id, [FromBody] PedidoDTO pedidoEditar)
         {
             IActionResult resultado = BadRequest();
 
