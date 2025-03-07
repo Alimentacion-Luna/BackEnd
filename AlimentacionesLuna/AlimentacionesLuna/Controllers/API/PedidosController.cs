@@ -19,10 +19,11 @@ namespace AlimentacionesLuna.Controllers.API
 
             try
             {
-                if(listaPedidos.Count != 0)
+                if (listaPedidos.Count != 0)
                 {
                     resultado = Ok(listaPedidos);
-                }else
+                }
+                else
                 {
                     resultado = NoContent();
                 }
@@ -44,7 +45,7 @@ namespace AlimentacionesLuna.Controllers.API
 
             try
             {
-                if (pedido != null) 
+                if (pedido != null)
                 {
                     resultado = Ok(pedido);
                 }
@@ -53,7 +54,7 @@ namespace AlimentacionesLuna.Controllers.API
                     resultado = NoContent();
                 }
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 resultado = BadRequest("Problema al intentar recoger el pedido");
             }
@@ -69,7 +70,7 @@ namespace AlimentacionesLuna.Controllers.API
             bool ins = false;
             try
             {
-                if(nuevoPedido != null)
+                if (nuevoPedido != null)
                 {
                     ins = Manejadora.InsPedido(nuevoPedido);
                     ins = true;
@@ -80,7 +81,7 @@ namespace AlimentacionesLuna.Controllers.API
                     resultado = NoContent();
                 }
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 resultado = BadRequest("Error al intentar insertar el pedido");
             }
@@ -90,17 +91,17 @@ namespace AlimentacionesLuna.Controllers.API
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] PedidoDTO pedidoEditar)
+        public IActionResult Put(int id, [FromBody] string nuevoEstado)
         {
             IActionResult resultado = BadRequest();
 
-            PedidoDTO pedido = Manejadora.getPedidoPorID(id);
+            bool updated = Manejadora.UpdatePedido(id, nuevoEstado);
 
             try
             {
-                if (pedido != null && pedido == pedidoEditar) 
+                if (updated != false)
                 {
-                    pedido = null /* Manejadora.UpdPedido(pedido)*/;
+                    PedidoDTO pedido = Manejadora.getPedidoPorID(id);
                     resultado = Ok(pedido);
                 }
                 else

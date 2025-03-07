@@ -13,6 +13,7 @@ namespace DAL
         /// Pre: La base de datos tiene que estar encendida
         /// Post: Devuelve TODOS los registros de la tabla
         /// </summary>
+        /// <param> NONE </param>
         /// <returns>Listado de pedidos</returns>
         public static List<PedidoDTO> getPedidos()
         {
@@ -57,9 +58,10 @@ namespace DAL
             return pedidos;
         }
         /// <summary>
-        /// 
-        ///
+        /// Funcion que Devuelve una Pedido por el ID
         /// </summary>
+        /// Pre: La base de datos tiene que estar encendida
+        /// Post: Devuelve UN registro de la tabla Pedidos
         /// <param name="idPedido"></param>
         /// <returns></returns>
         public static PedidoDTO getPedidoPorID(int idPedido)
@@ -109,7 +111,8 @@ namespace DAL
         /// Pre: La base de datos tiene que estar encendida
         /// Post: Devuelve TODOS los registros de la tabla
         /// </summary>
-        /// <returns></returns>
+        /// <param> NONE </param>
+        /// <returns>productos</returns>
         public static List<Producto> getProductos()
         {
             SqlConnection connection = new SqlConnection();
@@ -151,10 +154,12 @@ namespace DAL
             return productos;
         }
         /// <summary>
-        /// 
+        /// Función que devuelve una lista de productos de la base de datos 
+        /// Pre: La base de datos tiene que estar encendida
+        /// Post: Devuelve solo los registros de la tabla por el ID del proveedor
         /// </summary>
         /// <param name="idProveedor"></param>
-        /// <returns></returns>
+        /// <returns> productosProveedor </returns>
         public static List<ProductoDTO> getListaProductosPorIDProveedor(int idProveedor)
         {
             SqlConnection connection = new SqlConnection();
@@ -180,7 +185,7 @@ namespace DAL
                         producto.IdProducto = (int)reader["id_producto"];
                         producto.Impuesto = (int)reader["impuesto"];
                         decimal pU = (decimal)reader["precio"];
-                        producto.precio = (float) pU;
+                        producto.precio = (float)pU;
                         Tipo t = new Tipo();
                         t.Id = (int)reader["id_tipoProducto"];
                         t.Nombre = (string)reader["nombre_tipoProducto"];
@@ -199,9 +204,12 @@ namespace DAL
         }
         #region DetallesPedidos
         /// <summary>
-        /// 
+        /// Función que devuelve una lista de Detalles pedidos de la base de datos 
+        /// Pre: La base de datos tiene que estar encendida
+        /// Post: Devuelve TODOS los registros de la tabla Detalles de Pedido que correspondan con un ID
         /// </summary>
-        /// <returns></returns>
+        /// <param name="idPedido"
+        /// <returns> pedidos </returns>
         public static List<DetallesPedidoDTO> getDetallesPedidos(int idPedido)
         {
             SqlConnection connection = new SqlConnection();
@@ -318,7 +326,7 @@ namespace DAL
                     proveedor.Nombre = (string)reader["nombre"];
                     proveedor.Telefono = (long)reader["telefono"];
                     proveedor.Correo = (string)reader["correo"];
-                    
+
 
                 }
 
@@ -331,6 +339,13 @@ namespace DAL
             return proveedor;
         }
         #endregion
+        /// <summary>
+        /// Función que devuelve una Lista de Tipos de la base de datos
+        /// Pre: La base de datos tiene que estar encendida
+        /// Post: Devuelve TODOS los registros de la tabla
+        /// </summary>
+        /// <param> NONE </param>
+        /// <returns></returns>
         public static List<Tipo> getTipos()
         {
             SqlConnection connection = new SqlConnection();
@@ -360,15 +375,57 @@ namespace DAL
 
                 }
             }
-            catch (SqlException ex) 
+            catch (SqlException ex)
             {
                 throw ex;
             }
-            
+
 
             return tipos;
         }
+        /// <summary>
+        /// Función que actualiza un Pedido de la tabla por el ID del pedido
+        /// </summary>
+        /// Pre: La base de datos tiene que estar encendida
+        /// Post: Devuelve un BOOL para saber si se actualizó o no en la BD
+        /// <param name="pedidoUpdate"></param>
+        /// <returns> updated </returns>
+        public static bool UpdatePedido(int idPedidoUpdatear, string estado)
+        {
 
+            bool updated = false;
+            SqlConnection connection = new SqlConnection();
+            List<Tipo> tipos = new List<Tipo>();
+            SqlCommand command = new SqlCommand();
+            connection.ConnectionString
+            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            command.Parameters.Add("@idPedido", SqlDbType.Int).Value = idPedidoUpdatear;
+            command.Parameters.Add("@newState", SqlDbType.VarChar).Value = estado;
+            try
+            {
+                connection.Open();
+                command.CommandText = "UPDATE Pedidos SET estado = @newState WHERE id_pedido = @idPedido";
+                command.Connection = connection;
+                int filasActualizadas = command.ExecuteNonQuery();
+                if (filasActualizadas != 0)
+                {
+                    updated = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return updated;
+        }
+
+        /// <summary>
+        /// Función que inserta Pedidos a la BD
+        /// Pre: La base de datos tiene que estar encendida
+        /// Post: Devuelve un boolean si se ha introducido correctamente o no
+        /// </summary>
+        /// <param name="pedido"></param>
+        /// <returns> ins </returns>
         public static bool InsPedido(PedidoDTO pedido)
         {
             bool ins = false;
@@ -394,7 +451,7 @@ namespace DAL
                 dt.Columns.Add("descuento_detalles", typeof(int));
                 dt.Columns.Add("impuesto_detalles", typeof(int));
 
-                foreach(DetallesPedidoDTO d in pedido.detalles) 
+                foreach (DetallesPedidoDTO d in pedido.detalles)
                 {
                     dt.Rows.Add(modified, d.id_producto, d.cantidad, d.precioUnitario, d.precioCantidad, d.descuento, d.impuesto);
                 }
@@ -403,7 +460,8 @@ namespace DAL
 
                 ins = true;
 
-            }catch (SqlException ex) { ins = false; throw ex; };
+            }
+            catch (SqlException ex) { ins = false; throw ex; };
 
             return ins;
         }
