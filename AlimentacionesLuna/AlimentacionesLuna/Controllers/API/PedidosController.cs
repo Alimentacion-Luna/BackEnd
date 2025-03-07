@@ -1,5 +1,5 @@
 ﻿using DAL;
-using DTO;
+using ENT;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlimentacionesLuna.Controllers.API
@@ -14,7 +14,7 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado;
 
-            List<PedidoDTO> listaPedidos = Manejadora.getPedidos();
+            List<Pedido> listaPedidos = Manejadora.getPedidos();
 
             try
             {
