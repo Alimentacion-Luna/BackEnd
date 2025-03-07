@@ -15,7 +15,7 @@ namespace AlimentacionesLuna.Controllers.API
         {
             IActionResult resultado;
 
-            List<Pedido> listaPedidos = Manejadora.getPedidos();
+            List<PedidoDTO> listaPedidos = Manejadora.getPedidos();
 
             try
             {
