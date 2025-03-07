@@ -14,13 +14,13 @@ namespace DAL
         /// Post: Devuelve TODOS los registros de la tabla
         /// </summary>
         /// <returns>Listado de pedidos</returns>
-        public static List<PedidoDTO> getPedidos()
+        public static List<Pedido> getPedidos()
         {
             SqlConnection connection = new SqlConnection();
-            List<PedidoDTO> pedidos = new();
+            List<Pedido> pedidos = new();
             SqlCommand command = new SqlCommand();
             SqlDataReader reader;
-            PedidoDTO pedido;
+            Pedido pedido;
             connection.ConnectionString
             = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
 
@@ -40,12 +40,7 @@ namespace DAL
                         Proveedor p = new Proveedor();
                         p.IdProveedor = (int)reader["id_proveedor"];
                         p.Nombre = (string)reader["nombre_proveedor"];
-                        pedido.proveedor = p;
-                        pedido.fechaPedido = (DateTime)reader["fecha_pedido"];
                         decimal pT = (decimal)reader["precio_total"];
-                        pedido.precioTotal = (float)pT;
-                        pedido.estado = (string)reader["estado"];
-                        pedido.detalles = getDetallesPedidos(pedido.IdPedido);
                         pedidos.Add(pedido);
                     }
                 }
@@ -323,6 +318,10 @@ namespace DAL
             return proveedor;
         }
         #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<Tipo> getTipos()
         {
             SqlConnection connection = new SqlConnection();
