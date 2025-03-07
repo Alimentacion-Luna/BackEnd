@@ -56,7 +56,12 @@ namespace DAL
 
             return pedidos;
         }
-
+        /// <summary>
+        /// 
+        ///
+        /// </summary>
+        /// <param name="idPedido"></param>
+        /// <returns></returns>
         public static PedidoDTO getPedidoPorID(int idPedido)
         {
             SqlConnection connection = new SqlConnection();
@@ -82,6 +87,8 @@ namespace DAL
                     pedido.IdPedido = (int)reader["id_pedido"];
                     p.IdProveedor = (int)reader["id_proveedor"];
                     p.Nombre = (string)reader["nombre_proveedor"];
+                    p.Correo = (string)reader["correo"];
+                    p.Telefono = (long)reader["telefono"];
                     pedido.proveedor = p;
                     pedido.fechaPedido = (DateTime)reader["fecha_pedido"];
                     decimal pT = (decimal)reader["precio_total"];
@@ -172,6 +179,8 @@ namespace DAL
                         producto = new();
                         producto.IdProducto = (int)reader["id_producto"];
                         producto.Impuesto = (int)reader["impuesto"];
+                        decimal pU = (decimal)reader["precio"];
+                        producto.precio = (float) pU;
                         Tipo t = new Tipo();
                         t.Id = (int)reader["id_tipoProducto"];
                         t.Nombre = (string)reader["nombre_tipoProducto"];
