@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\API\DetallesPedidoController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\images\producto\1.webp" />
     <None Include="wwwroot\images\producto\10.webp" />
     <None Include="wwwroot\images\producto\11.webp" />

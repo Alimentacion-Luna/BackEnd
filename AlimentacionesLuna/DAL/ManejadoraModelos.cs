@@ -1,6 +1,0 @@
-﻿using DTO;
-
-namespace DAL
-{
-    
-}

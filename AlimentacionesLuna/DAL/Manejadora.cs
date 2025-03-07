@@ -8,12 +8,16 @@ namespace DAL
 {
     public class Manejadora
     {
+        #region Server Link
+        static string server_str = "server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;";
+        #endregion
+
+        #region Pedidos
         /// <summary>
         /// Función que devuelve una lista de pedidos de la base de datos
         /// Pre: La base de datos tiene que estar encendida
         /// Post: Devuelve TODOS los registros de la tabla
         /// </summary>
-        /// <param> NONE </param>
         /// <returns>Listado de pedidos</returns>
         public static List<PedidoDTO> getPedidos()
         {
@@ -23,7 +27,7 @@ namespace DAL
             SqlDataReader reader;
             PedidoDTO pedido;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
 
             try
             {
@@ -71,7 +75,7 @@ namespace DAL
             SqlDataReader reader;
             PedidoDTO pedido = null;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
             command.Parameters.Add("@id", SqlDbType.Int).Value = idPedido;
 
             try
@@ -106,6 +110,10 @@ namespace DAL
             return pedido;
 
         }
+
+        #endregion
+
+        #region Productos
         /// <summary>
         /// Función que devuelve una lista de productos de la base de datos
         /// Pre: La base de datos tiene que estar encendida
@@ -121,7 +129,7 @@ namespace DAL
             SqlDataReader reader;
             Producto producto;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
 
             try
             {
@@ -168,7 +176,7 @@ namespace DAL
             SqlDataReader reader;
             ProductoDTO producto;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
             command.Parameters.Add("@id", SqlDbType.Int).Value = idProveedor;
             try
             {
@@ -202,6 +210,8 @@ namespace DAL
 
             return productosProveedor;
         }
+        #endregion
+
         #region DetallesPedidos
         /// <summary>
         /// Función que devuelve una lista de Detalles pedidos de la base de datos 
@@ -218,7 +228,7 @@ namespace DAL
             SqlDataReader reader;
             DetallesPedidoDTO pedido;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
             command.Parameters.Add("@id", SqlDbType.Int).Value = idPedido;
 
             try
@@ -241,7 +251,6 @@ namespace DAL
                         pedido.precioCantidad = (float)pC;
                         decimal pU = (decimal)reader["precio_unitario"];
                         pedido.precioUnitario = (float)pU;
-                        pedido.cantidad = (int)reader["cantidad"];
                         pedido.impuesto = (int)reader["impuesto_detallesPedido"];
                         pedido.descuento = (int)reader["descuento_detallesPedido"];
                         pedidos.Add(pedido);
@@ -256,11 +265,12 @@ namespace DAL
             return pedidos;
         }
         #endregion
+
         #region Proveedores
         /// <summary>
         /// Función que recibe una lista de Proveedores
         /// </summary>
-        /// <returns> List<Proveedor> proveedores </Proveedor></returns>
+        /// <returns> proveedores</returns>
         public static List<Proveedor> getProveedores()
         {
             SqlConnection connection = new SqlConnection();
@@ -269,7 +279,7 @@ namespace DAL
             SqlDataReader reader;
             Proveedor proveedor;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
 
             try
             {
@@ -310,7 +320,7 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             SqlDataReader reader;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
             command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = idProveedor;
 
             try
@@ -339,12 +349,13 @@ namespace DAL
             return proveedor;
         }
         #endregion
+
+        #region Tipos
         /// <summary>
         /// Función que devuelve una Lista de Tipos de la base de datos
         /// Pre: La base de datos tiene que estar encendida
         /// Post: Devuelve TODOS los registros de la tabla
         /// </summary>
-        /// <param> NONE </param>
         /// <returns></returns>
         public static List<Tipo> getTipos()
         {
@@ -353,7 +364,7 @@ namespace DAL
             SqlCommand command = new SqlCommand();
             SqlDataReader reader;
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
 
             try
             {
@@ -383,6 +394,8 @@ namespace DAL
 
             return tipos;
         }
+        #endregion
+
         /// <summary>
         /// Función que actualiza un Pedido de la tabla por el ID del pedido
         /// </summary>
@@ -398,7 +411,7 @@ namespace DAL
             List<Tipo> tipos = new List<Tipo>();
             SqlCommand command = new SqlCommand();
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
             command.Parameters.Add("@idPedido", SqlDbType.Int).Value = idPedidoUpdatear;
             command.Parameters.Add("@newState", SqlDbType.VarChar).Value = estado;
             try
@@ -433,13 +446,13 @@ namespace DAL
             List<Tipo> tipos = new List<Tipo>();
             SqlCommand command = new SqlCommand();
             connection.ConnectionString
-            = ("server=mokos-server.database.windows.net;database=MokosDB;uid=usuario;pwd=LaCampana123;trustServerCertificate=true;");
+            = (server_str);
             command.Parameters.Add("@id_proveedor", SqlDbType.Int).Value = pedido.proveedor.IdProveedor;
             try
             {
                 connection.Open();
                 SqlBulkCopy bulk = new(connection);
-                command.CommandText = "INSERT INTO Pedidos (id_proveedor) VALUES (@id_proveedor)";
+                command.CommandText = "INSERT INTO Pedidos (id_pedido, id_proveedor) VALUES (0, @id_proveedor)";
                 int modified = (int)command.ExecuteScalar();
                 bulk.DestinationTableName = "Detalles_Pedido";
                 DataTable dt = new DataTable();
