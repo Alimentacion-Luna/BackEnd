@@ -225,7 +225,8 @@ namespace DAL
                         pedido.precioCantidad = (float)pC;
                         decimal pU = (decimal)reader["precio_unitario"];
                         pedido.precioUnitario = (float)pU;
-                        pedido.cantidad = (int)reader["cantidad_detallesPedido"];
+                        pedido.cantidad = (int)reader["cantidad"];
+                        pedido.impuesto = (int)reader["impuesto_detallesPedido"];
                         pedido.descuento = (int)reader["descuento_detallesPedido"];
                         pedidos.Add(pedido);
                     }
