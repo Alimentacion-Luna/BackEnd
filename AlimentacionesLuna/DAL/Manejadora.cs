@@ -448,12 +448,16 @@ namespace DAL
             connection.ConnectionString
             = (server_str);
             command.Parameters.Add("@id_proveedor", SqlDbType.Int).Value = pedido.proveedor.IdProveedor;
+            command.Parameters.Add("@precio_total", SqlDbType.Money).Value = pedido.precioTotal;
             try
             {
                 connection.Open();
                 SqlBulkCopy bulk = new(connection);
-                command.CommandText = "INSERT INTO Pedidos (id_pedido, id_proveedor) VALUES (0, @id_proveedor)";
-                int modified = (int)command.ExecuteScalar();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO Pedidos (id_proveedor, precio_total, fecha_pedido) " +
+                              "VALUES (@id_proveedor, @precio_total, CAST(GETDATE() AS DATE)); " +
+                              "SELECT SCOPE_IDENTITY();";
+                int modified = Convert.ToInt32(command.ExecuteScalar());
                 bulk.DestinationTableName = "Detalles_Pedido";
                 DataTable dt = new DataTable();
                 dt.Columns.Add("id_pedido", typeof(int));
@@ -466,8 +470,12 @@ namespace DAL
 
                 foreach (DetallesPedidoDTO d in pedido.detalles)
                 {
-                    dt.Rows.Add(modified, d.id_producto, d.cantidad, d.precioUnitario, d.precioCantidad, d.descuento, d.impuesto);
+                    SqlMoney precioUnitario = new SqlMoney(d.precioUnitario);
+                    SqlMoney precioTotal = new SqlMoney(d.precioCantidad);
+
+                    dt.Rows.Add(modified, d.id_producto, d.cantidad, precioUnitario, precioTotal, d.descuento, d.impuesto);
                 }
+
 
                 bulk.WriteToServer(dt);
 

@@ -10,6 +10,5 @@ namespace DTO
         public string estado { get; set; }
         public Proveedor proveedor { get; set; }
         public List<DetallesPedidoDTO> detalles { get; set; }
-
     }
 }
